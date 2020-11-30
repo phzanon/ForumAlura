@@ -1,5 +1,6 @@
 package br.com.pedrozanon.forum.controller;
 
+import br.com.pedrozanon.forum.controller.dto.DetalhesDoTopicoDto;
 import br.com.pedrozanon.forum.controller.dto.TopicoDto;
 import br.com.pedrozanon.forum.controller.form.TopicoForm;
 import br.com.pedrozanon.forum.modelo.Topico;
@@ -41,5 +42,11 @@ public class TopicosController {
 
         URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(uri).body(new TopicoDto(topico));
+    }
+
+    @GetMapping("/{id}")
+    public DetalhesDoTopicoDto detalhar(@PathVariable Long id) {
+        Topico topico = topicoRepository.getOne(id);
+        return new DetalhesDoTopicoDto(topico);
     }
 }

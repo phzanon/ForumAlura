@@ -30,7 +30,7 @@ public class ErroDeValidacaoHandler {
             ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), mensagem);
             dto.add(erro);
         });
-        
+
         return dto;
     }
 }
