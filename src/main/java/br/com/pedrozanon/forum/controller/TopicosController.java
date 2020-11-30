@@ -6,8 +6,12 @@ import br.com.pedrozanon.forum.modelo.Topico;
 import br.com.pedrozanon.forum.repository.CursoRepository;
 import br.com.pedrozanon.forum.repository.TopicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -31,8 +35,11 @@ public class TopicosController {
     }
 
     @PostMapping
-    public void persist(@RequestBody TopicoForm topicoForm) {
+    public ResponseEntity<TopicoDto> persist(@RequestBody @Valid TopicoForm topicoForm, UriComponentsBuilder uriBuilder) {
         Topico topico = topicoForm.converter(cursoRepository);
         topicoRepository.save(topico);
+
+        URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        return ResponseEntity.created(uri).body(new TopicoDto(topico));
     }
 }
