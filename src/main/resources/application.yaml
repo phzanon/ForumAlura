@@ -14,3 +14,7 @@ spring:
     console:
       enabled: true
       path: /h2-console
+forum:
+  jwt:
+    secret: pedrozanon
+    expiration: 86400000
