@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: ${FORUM_DATABASE_URL}
+    username: ${FORUM_DATABASE_USERNAME}
+    password: ${FORUM_DATABASE_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+forum:
+  jwt:
+    secret: ${FORUM_JWT_SECRET}
+    expiration: 86400000
+server:
+  port: ${PORT}
