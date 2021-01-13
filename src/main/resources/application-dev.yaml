@@ -1,0 +1,61 @@
+##datasource
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/aluraforum
+#    username: postgres
+#    password: 1234
+#  jpa:
+#    database: POSTGRESQL
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create-drop
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8081
+#forum:
+#  jwt:
+#    secret: pedrozanon
+#    expiration: 86400000
+#management:
+#  endpoint:
+#    health:
+#      show-details: always
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#info:
+#  app:
+#    name: '@project.name@'
+#    version: '@project.version@'
+#
+##docker run -p 5432:5432 -v /tmp/database:/var/lib/postgresql/data -e POSTGRES_PASSWORD=1234 -d postgres
+
+#datasource
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:alura-forum
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+forum:
+  jwt:
+    secret: pedrozanon
+    expiration: 86400000
+server:
+  port: 8080
